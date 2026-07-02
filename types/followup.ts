@@ -1,7 +1,11 @@
-export type FollowUp = {
+export type Contact = {
+  id: string;
   name: string;
-  lastContacted: Date;
-  nextFollowup: Date;
+  last_contacted: string;
+  next_followup: string;
   source: string;
   status: string;
 };
+
+export type ContactCreate = Omit<Contact, "id">;
+export type ContactUpdate = Partial<Contact>;
