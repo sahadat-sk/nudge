@@ -9,3 +9,9 @@ export type Contact = {
 
 export type ContactCreate = Omit<Contact, "id">;
 export type ContactUpdate = Partial<Contact>;
+
+export type ContactFormHandle = {
+  readonly isDirty: boolean;
+  reset: () => void;
+  submit: () => void;
+};
