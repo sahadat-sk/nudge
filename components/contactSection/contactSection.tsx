@@ -16,10 +16,12 @@ import { useHotkeys } from "react-hotkeys-hook";
 
 import { format } from "date-fns";
 
-import { Contact } from "@/types/followup";
+import { Contact } from "@/types/contacts";
 import { useEffect, useMemo, useState } from "react";
-import { useContacts } from "@/hooks/useContacts";
-import AddContactDialog from "./contactDialog";
+import { useContacts } from "@/hooks/contacts/useContacts";
+import { defaultContactQuery } from "@/types/searchParams";
+import ContactToolbar from "./contactToolBar";
+import { Button } from "../ui/button";
 
 const columnHelper = createColumnHelper<Contact>();
 
@@ -30,10 +32,26 @@ function ContactSection({
   selectedId: string | null;
   setSelectedId: (state: string) => void;
 }) {
+  const [query, setQuery] = useState(defaultContactQuery);
+
   const columns = useMemo(
     () => [
       columnHelper.accessor("name", {
-        header: "Name",
+        header: () => (
+          <Button
+            variant="ghost"
+            onClick={() =>
+              setQuery((q) => ({
+                ...q,
+                sortBy: "name",
+                sortOrder:
+                  q.sortBy == "name" && q.sortOrder == "asc" ? "desc" : "asc",
+              }))
+            }
+          >
+            Name
+          </Button>
+        ),
         cell: (info) => info.getValue(),
       }),
 
@@ -61,8 +79,9 @@ function ContactSection({
     [],
   );
 
-  const contacts = useContacts();
+  const contacts = useContacts(query);
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
     data: contacts.data?.items ?? [],
     columns,
@@ -110,7 +129,7 @@ function ContactSection({
 
   return (
     <>
-      <AddContactDialog />
+      <ContactToolbar query={query} setQuery={setQuery} />
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -145,6 +164,33 @@ function ContactSection({
           ))}
         </TableBody>
       </Table>
+      <div className="mt-4 flex items-center justify-between">
+        <Button
+          disabled={query.page === 1}
+          onClick={() =>
+            setQuery((q) => ({
+              ...q,
+              page: q.page - 1,
+            }))
+          }
+        >
+          Previous
+        </Button>
+
+        <span>Page {query.page}</span>
+
+        <Button
+          disabled={!contacts.data?.has_next}
+          onClick={() =>
+            setQuery((q) => ({
+              ...q,
+              page: q.page + 1,
+            }))
+          }
+        >
+          Next
+        </Button>
+      </div>
     </>
   );
 }

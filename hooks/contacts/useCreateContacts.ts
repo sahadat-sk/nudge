@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createContact } from "@/api/contacts";
-import { ContactCreate } from "@/types/followup";
+import { ContactCreate } from "@/types/contacts";
 import { toast } from "sonner";
 
 export function useCreateContact() {

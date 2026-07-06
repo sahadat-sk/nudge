@@ -20,7 +20,7 @@ import {
 
 import { Label } from "@/components/ui/label";
 import { DatePickerField } from "../ui/datepickerField";
-import { ContactFormHandle } from "@/types/followup";
+import { ContactFormHandle } from "@/types/contacts";
 
 type Props = {
   defaultValues?: Partial<ContactFormValues>;

@@ -26,8 +26,8 @@ import {
 import { Button } from "@/components/ui/button";
 
 import ContactForm from "./contactForm";
-import { useCreateContact } from "@/hooks/useCreateContacts";
-import { ContactFormHandle } from "@/types/followup";
+import { useCreateContact } from "@/hooks/contacts/useCreateContacts";
+import { ContactFormHandle } from "@/types/contacts";
 
 export default function AddContactDialog() {
   const mutation = useCreateContact();

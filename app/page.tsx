@@ -22,7 +22,7 @@ export default function Home() {
         </ResizablePanel>
         <ResizableHandle />
         <ResizablePanel minSize="30%">
-          <DetailsPanel followUp={undefined} />
+          <DetailsPanel selectedId={selectedId} />
         </ResizablePanel>
       </ResizablePanelGroup>
     </>

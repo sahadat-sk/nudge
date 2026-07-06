@@ -1,31 +1,31 @@
-import { Contact, ContactCreate } from "@/types/followup";
+import { Contact, ContactCreate } from "@/types/contacts";
+import { ContactQuery } from "@/types/searchParams";
+import { api } from "./client";
 
-const BASE_URL = "http://localhost:8000/api/v1";
+export async function getContacts(query: ContactQuery) {
+  const response = await api.get(`/contacts`, {
+    params: {
+      page: query.page,
+      page_size: query.pageSize,
+      search: query.search,
+      status: query.status,
+      source: query.source,
+      sort: query.sortBy,
+      order: query.sortOrder,
+    },
+  });
 
-export async function getContacts() {
-  const response = await fetch(`${BASE_URL}/contacts`);
+  return response.data;
+}
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch contacts");
-  }
+export async function getContact(id: string | null) {
+  if (!id) return;
+  const response = await api.get(`/contacts/${id.trim()}`);
 
-  return response.json();
+  return response.data;
 }
 
 export async function createContact(contact: ContactCreate): Promise<Contact> {
-  const response = await fetch(`${BASE_URL}/contacts`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      ...contact,
-    }),
-  });
-
-  if (!response.ok) {
-    throw new Error("Unable to create contact");
-  }
-
-  return response.json();
+  const response = await api.post(`/contacts`, contact);
+  return response.data;
 }
