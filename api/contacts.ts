@@ -1,4 +1,4 @@
-import { Contact, ContactCreate } from "@/types/contacts";
+import { Contact, ContactCreate, ContactUpdate } from "@/types/contacts";
 import { ContactQuery } from "@/types/searchParams";
 import { api } from "./client";
 
@@ -16,6 +16,15 @@ export async function getContacts(query: ContactQuery) {
   });
 
   return response.data;
+}
+
+export async function updateContact(
+  contactId: string,
+  body: ContactUpdate,
+): Promise<Contact> {
+  const { data } = await api.patch(`/contacts/${contactId}`, body);
+
+  return data;
 }
 
 export async function getContact(id: string | null) {

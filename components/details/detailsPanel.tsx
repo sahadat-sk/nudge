@@ -1,23 +1,23 @@
 import { useContact } from "@/hooks/contacts/useContact";
 import ActivityComposer from "./activityComposer";
 import { useActivities } from "@/hooks/contactActivities/useActivities";
+import ContactDetails from "./contactDetails";
+import ActivityTimeline from "./activityTimeLine";
 
 type DetailsPanelProps = {
   selectedId: string | null;
 };
 
 function DetailsPanel({ selectedId }: DetailsPanelProps) {
-  const { data, isLoading } = useContact(selectedId);
-  const hii = useActivities(selectedId);
+  const activities = useActivities(selectedId);
 
-  console.log(hii.data);
-
-  if (!selectedId || isLoading) return <>Loading.....</>;
+  if (!selectedId || !activities.data) return <>Loading.....</>;
 
   return (
     <>
-      <div>{data?.name}</div>
+      <ContactDetails contactId={selectedId} />
       <ActivityComposer contactId={selectedId} />
+      <ActivityTimeline contactId={selectedId} />
     </>
   );
 }

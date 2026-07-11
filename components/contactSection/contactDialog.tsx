@@ -28,6 +28,7 @@ import { Button } from "@/components/ui/button";
 import ContactForm from "./contactForm";
 import { useCreateContact } from "@/hooks/contacts/useCreateContacts";
 import { ContactFormHandle } from "@/types/contacts";
+import { format } from "date-fns";
 
 export default function AddContactDialog() {
   const mutation = useCreateContact();
@@ -98,10 +99,8 @@ export default function AddContactDialog() {
             onSubmit={async (values) => {
               await mutation.mutateAsync({
                 ...values,
-                last_contacted: values.last_contacted
-                  .toISOString()
-                  .split("T")[0],
-                next_followup: values.next_followup.toISOString().split("T")[0],
+                last_contacted: format(values.last_contacted, "yyyy-MM-dd"),
+                next_followup: format(values.next_followup, "yyyy-MM-dd"),
               });
 
               formRef.current?.reset();

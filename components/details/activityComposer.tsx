@@ -63,7 +63,6 @@ export default function ActivityComposer({ contactId }: Props) {
           {...register("description")}
           rows={5}
           placeholder="Write a note, log a phone call, meeting, email..."
-          autoFocus
           onKeyDown={(e) => {
             if (e.ctrlKey && e.key === "Enter") {
               e.preventDefault();
