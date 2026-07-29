@@ -42,6 +42,7 @@ export default function ContactInfoCard({ contact }: Props) {
   const [draft, setDraft] = useState(contact);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setDraft(contact);
   }, [contact]);
 

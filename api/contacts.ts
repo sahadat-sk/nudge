@@ -1,7 +1,6 @@
 import { Contact, ContactCreate, ContactUpdate } from "@/types/contacts";
 import { ContactQuery } from "@/types/searchParams";
-import { api } from "./client";
-
+import { api } from "@/lib/api/http-client";
 export async function getContacts(query: ContactQuery) {
   const response = await api.get(`/contacts`, {
     params: {
