@@ -29,9 +29,11 @@ import ContactForm from "./contactForm";
 import { useCreateContact } from "@/hooks/contacts/useCreateContacts";
 import { ContactFormHandle } from "@/types/contacts";
 import { format } from "date-fns";
+import { useAuth } from "@/lib/auth/authContext";
 
 export default function AddContactDialog() {
   const mutation = useCreateContact();
+  const { logout } = useAuth();
 
   const formRef = useRef<ContactFormHandle>(null);
 
@@ -77,6 +79,7 @@ export default function AddContactDialog() {
             Add Contact
           </Button>
         </DialogTrigger>
+        <Button onClick={logout}>Log out</Button>
 
         <DialogContent
           className="sm:max-w-xl"

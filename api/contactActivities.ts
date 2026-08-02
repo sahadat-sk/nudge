@@ -3,7 +3,7 @@ import {
   CreateActivity,
   UpdateActivity,
 } from "@/types/activity";
-import { api } from "./client";
+import { api } from "@/lib/api/http-client";
 
 export async function getActivities(
   contactId: string,
