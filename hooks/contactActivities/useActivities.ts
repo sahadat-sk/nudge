@@ -1,4 +1,4 @@
-import { getActivities } from "@/api/contactActivities";
+import { getActivities } from "@/lib/api/contactActivities";
 import { useQuery } from "@tanstack/react-query";
 
 export function useActivities(contactId: string | null) {

@@ -1,5 +1,5 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import { getContact } from "@/api/contacts";
+import { getContact } from "@/lib/api/contacts";
 
 export function useContact(id: string | null) {
   return useQuery({

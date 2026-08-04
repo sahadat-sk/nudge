@@ -1,4 +1,4 @@
-import { deleteActivity } from "@/api/contactActivities";
+import { deleteActivity } from "@/lib/api/contactActivities";
 import { useMutation } from "@tanstack/react-query";
 import { useQueryClient } from "@tanstack/react-query";
 

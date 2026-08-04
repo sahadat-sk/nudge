@@ -1,5 +1,5 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import { getContacts } from "@/api/contacts";
+import { getContacts } from "@/lib/api/contacts";
 import { ContactQuery } from "@/types/searchParams";
 
 export function useContacts(query: ContactQuery) {

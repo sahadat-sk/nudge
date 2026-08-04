@@ -1,4 +1,4 @@
-import { createActivity } from "@/api/contactActivities";
+import { createActivity } from "@/lib/api/contactActivities";
 import { CreateActivity } from "@/types/activity";
 import { useMutation } from "@tanstack/react-query";
 import { useQueryClient } from "@tanstack/react-query";

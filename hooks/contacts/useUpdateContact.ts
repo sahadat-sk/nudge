@@ -1,4 +1,4 @@
-import { updateContact } from "@/api/contacts";
+import { updateContact } from "@/lib/api/contacts";
 import { ContactUpdate } from "@/types/contacts";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
