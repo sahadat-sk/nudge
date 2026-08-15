@@ -15,7 +15,7 @@ export interface ContactQuery {
 
 export const defaultContactQuery: ContactQuery = {
   page: 1,
-  pageSize: 50,
+  pageSize: 15,
 
   search: "",
 

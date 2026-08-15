@@ -130,66 +130,87 @@ function ContactSection({
   return (
     <>
       <ContactToolbar query={query} setQuery={setQuery} />
-      <Table>
-        <TableHeader>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <TableHead key={header.id}>
-                  {flexRender(
-                    header.column.columnDef.header,
-                    header.getContext(),
-                  )}
-                </TableHead>
-              ))}
-            </TableRow>
-          ))}
-        </TableHeader>
-        <TableBody>
-          {table.getRowModel().rows.map((row) => (
-            <TableRow
-              key={row.id}
-              data-state={
-                row.original.id == selectedId ? "selected" : undefined
-              }
-              onClick={() => setSelectedId(row.original.id)}
-              className="cursor-pointer"
-            >
-              {row.getVisibleCells().map((cell) => (
-                <TableCell key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+      <div className="overflow-hidden min-h-150 rounded-md border">
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <TableHead key={header.id}>
+                    {flexRender(
+                      header.column.columnDef.header,
+                      header.getContext(),
+                    )}
+                  </TableHead>
+                ))}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow
+                  key={row.id}
+                  data-state={
+                    row.original.id == selectedId ? "selected" : undefined
+                  }
+                  onClick={() => setSelectedId(row.original.id)}
+                  className="cursor-pointer"
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
+                  No results.
                 </TableCell>
-              ))}
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
       <div className="mt-4 flex items-center justify-between">
-        <Button
-          disabled={query.page === 1}
-          onClick={() =>
-            setQuery((q) => ({
-              ...q,
-              page: q.page - 1,
-            }))
-          }
-        >
-          Previous
-        </Button>
+        <span className="text-sm">
+          Page {contacts.data?.page} of {contacts.data?.pages}
+        </span>
 
-        <span>Page {query.page}</span>
-
-        <Button
-          disabled={!contacts.data?.has_next}
-          onClick={() =>
-            setQuery((q) => ({
-              ...q,
-              page: q.page + 1,
-            }))
-          }
-        >
-          Next
-        </Button>
+        <div className="flex items-center justify-end space-x-2 ">
+          <Button
+            variant="outline"
+            disabled={query.page === 1}
+            onClick={() =>
+              setQuery((q) => ({
+                ...q,
+                page: q.page - 1,
+              }))
+            }
+          >
+            Previous
+          </Button>
+          <Button
+            variant="outline"
+            disabled={contacts.data?.page >= contacts.data?.pages}
+            onClick={() =>
+              setQuery((q) => ({
+                ...q,
+                page: q.page + 1,
+              }))
+            }
+          >
+            Next
+          </Button>
+        </div>
       </div>
     </>
   );

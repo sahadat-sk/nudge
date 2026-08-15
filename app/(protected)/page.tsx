@@ -16,10 +16,12 @@ export default function Home() {
     <>
       <ResizablePanelGroup>
         <ResizablePanel minSize="50%" defaultSize="70%">
-          <ContactSection
-            selectedId={selectedId}
-            setSelectedId={setSelectedId}
-          />
+          <section className="mt-16 p-16">
+            <ContactSection
+              selectedId={selectedId}
+              setSelectedId={setSelectedId}
+            />
+          </section>
         </ResizablePanel>
         <ResizableHandle />
         <ResizablePanel minSize="30%">

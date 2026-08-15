@@ -11,6 +11,12 @@ import AddContactDialog from "./contactDialog";
 import { ContactQuery } from "@/types/searchParams";
 import { useDebounce } from "use-debounce";
 import { useEffect, useState } from "react";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "../ui/input-group";
+import { Search } from "lucide-react";
 
 interface Props {
   query: ContactQuery;
@@ -32,13 +38,16 @@ export default function ContactToolbar({ query, setQuery }: Props) {
 
   return (
     <div className="mb-4 flex items-center gap-3">
-      <Input
-        placeholder="Search contacts..."
-        value={searchInput}
-        className="max-w-sm"
-        onChange={(e) => setSearchInput(e.target.value)}
-      />
-
+      <InputGroup className="max-w-sm">
+        <InputGroupInput
+          placeholder="Search contacts..."
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+        />
+        <InputGroupAddon>
+          <Search />
+        </InputGroupAddon>
+      </InputGroup>
       <Select
         value={query.status ?? "all"}
         onValueChange={(v) =>

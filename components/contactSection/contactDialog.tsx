@@ -79,7 +79,7 @@ export default function AddContactDialog() {
             Add Contact
           </Button>
         </DialogTrigger>
-        <Button onClick={logout}>Log out</Button>
+        {/* <Button onClick={logout}>Log out</Button> */}
 
         <DialogContent
           className="sm:max-w-xl"

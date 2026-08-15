@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${jakartaSans.variable} h-full antialiased`}>
-      <body className="font-sans">
+      <body className="font-sans h-screen">
         <Providers>{children}</Providers>
         <Toaster />
       </body>
