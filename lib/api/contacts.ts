@@ -10,6 +10,7 @@ export async function getContacts(query: ContactQuery) {
       search: query.search,
       status: query.status,
       source: query.source,
+      due: query.due,
       sort: query.sortBy,
       order: query.sortOrder,
     },

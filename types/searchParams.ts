@@ -8,6 +8,7 @@ export interface ContactQuery {
 
   status?: string;
   source?: string;
+  due?: string;
 
   sortBy: string;
   sortOrder: SortOrder;
@@ -21,7 +22,8 @@ export const defaultContactQuery: ContactQuery = {
 
   status: undefined,
   source: undefined,
+  due: undefined,
 
   sortBy: "next_followup",
-  sortOrder: "asc",
+  sortOrder: "desc",
 };
