@@ -10,6 +10,8 @@ export const contactSchema = z.object({
   source: z.string().trim().min(1, "Source is required"),
 
   status: z.string().trim().min(1, "Status is required"),
+
+  contact_details: z.string(),
 });
 
 export type ContactFormValues = z.infer<typeof contactSchema>;

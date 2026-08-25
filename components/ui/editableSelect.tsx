@@ -7,19 +7,24 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { cn } from "@/lib/utils";
 
 interface Props {
   value: string;
-
   options: string[];
-
   onChange: (value: string) => void;
+  className?: string;
 }
 
-export default function EditableSelect({ value, options, onChange }: Props) {
+export default function EditableSelect({
+  value,
+  options,
+  onChange,
+  className,
+}: Props) {
   return (
     <Select value={value} onValueChange={onChange}>
-      <SelectTrigger>
+      <SelectTrigger className={cn(className)}>
         <SelectValue />
       </SelectTrigger>
 

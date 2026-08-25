@@ -5,6 +5,7 @@ export type Contact = {
   next_followup: string;
   source: string;
   status: string;
+  contact_details: string;
 };
 
 export type ContactCreate = Omit<Contact, "id">;

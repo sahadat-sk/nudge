@@ -28,6 +28,12 @@ type Props = {
   onSubmit: (values: ContactFormValues) => void | Promise<void>;
 };
 
+const getDefaultNextFollowup = () => {
+  const date = new Date();
+  date.setDate(date.getDate() + 3);
+  return date;
+};
+
 const ContactForm = forwardRef<ContactFormHandle, Props>(
   ({ defaultValues, loading, onSubmit }, ref) => {
     const { register, control, handleSubmit, reset, formState } =
@@ -38,7 +44,8 @@ const ContactForm = forwardRef<ContactFormHandle, Props>(
           source: "",
           status: "Interested",
           last_contacted: new Date(),
-          next_followup: new Date(),
+          next_followup: getDefaultNextFollowup(),
+          contact_details: "",
           ...defaultValues,
         },
       });
@@ -195,6 +202,22 @@ const ContactForm = forwardRef<ContactFormHandle, Props>(
               </div>
             )}
           />
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="name">Contact Details</Label>
+
+          <Input
+            id="contact_details"
+            placeholder="johndoe@nudge.com/9547122470"
+            {...register("contact_details")}
+          />
+
+          {formState.errors.contact_details && (
+            <p className="text-sm text-destructive">
+              {formState.errors.contact_details.message}
+            </p>
+          )}
         </div>
 
         <Button type="submit" className="w-full" disabled={loading}>
