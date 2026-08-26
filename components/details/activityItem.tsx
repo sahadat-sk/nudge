@@ -17,21 +17,22 @@ import ActivityIcon from "./activityIcon";
 export default function ActivityItem({ activity }: any) {
   return (
     <div className="group flex gap-4 rounded-lg border p-4 transition-colors hover:bg-muted/40">
-      <div className="mt-1 rounded-full bg-muted p-2">
-        <ActivityIcon type={activity.type} />
-      </div>
-
       <div className="flex-1">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="font-medium">{activity.title}</p>
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div className="mt-1 rounded-full bg-muted p-2">
+              <ActivityIcon type={activity.type} />
+            </div>
+            <div>
+              <p className="font-medium">{activity.title}</p>
 
-            <p className="text-xs text-muted-foreground">
-              {format(new Date(activity.created_at), "hh:mm a")}
-            </p>
+              <p className="text-xs text-muted-foreground">
+                {format(new Date(activity.created_at), "hh:mm a")}
+              </p>
+            </div>
           </div>
 
-          <DropdownMenu>
+          {/* <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
@@ -53,7 +54,7 @@ export default function ActivityItem({ activity }: any) {
                 Delete
               </DropdownMenuItem>
             </DropdownMenuContent>
-          </DropdownMenu>
+          </DropdownMenu> */}
         </div>
 
         <p className="mt-3 whitespace-pre-wrap leading-7 text-muted-foreground">

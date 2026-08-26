@@ -57,8 +57,8 @@ export default function ActivityComposer({ contactId }: Props) {
   });
 
   return (
-    <Card>
-      <CardContent className="space-y-4 pt-6">
+    <div className="xs:border-none p-6 pt-4">
+      <CardContent className="space-y-4 border-t pt-8">
         <Textarea
           {...register("description")}
           rows={5}
@@ -109,6 +109,6 @@ export default function ActivityComposer({ contactId }: Props) {
           Press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> to save
         </p>
       </CardContent>
-    </Card>
+    </div>
   );
 }

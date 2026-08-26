@@ -12,7 +12,7 @@ export default function ActivityGroup({ title, items }: any) {
         <Separator />
       </div>
 
-      <div className="mt-3 space-y-4">
+      <div className="mt-6 space-y-6">
         {items.map((activity: any) => (
           <ActivityItem key={activity.id} activity={activity} />
         ))}

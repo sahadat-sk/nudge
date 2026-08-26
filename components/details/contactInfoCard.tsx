@@ -73,7 +73,7 @@ export default function ContactInfoCard({ contact }: Props) {
   console.log("hellow");
 
   return (
-    <Card className="rounded-none">
+    <div className="p-6">
       <CardContent className="space-y-5 pt-4">
         {/* Identity: name + contact details as inline "ghost" inputs, status
             as a colored pill so it reads at a glance without its own label. */}
@@ -130,7 +130,7 @@ export default function ContactInfoCard({ contact }: Props) {
                 last_contacted: date ? format(date, "yyyy-MM-dd") : undefined,
               })
             }
-            className="h-auto border-none bg-transparent p-0 text-sm font-medium shadow-none"
+            className="h-auto border-none bg-transparent p-2 text-sm font-medium shadow-none"
             icon={Clock}
             label="Last contacted"
           />
@@ -151,7 +151,7 @@ export default function ContactInfoCard({ contact }: Props) {
             })
           }
           className={cn(
-            "h-auto border-none bg-transparent p-0 text-sm font-medium shadow-none",
+            "h-auto border-none bg-transparent p-2 text-sm font-medium shadow-none",
             followUpIsUrgent && "text-amber-700 dark:text-amber-400",
           )}
           icon={CalendarClock}
@@ -159,6 +159,6 @@ export default function ContactInfoCard({ contact }: Props) {
           tone={followUpIsUrgent ? "warning" : "default"}
         />
       </CardContent>
-    </Card>
+    </div>
   );
 }

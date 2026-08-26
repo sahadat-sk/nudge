@@ -21,6 +21,8 @@ import {
 import { Label } from "@/components/ui/label";
 import { DatePickerField } from "../ui/datepickerField";
 import { ContactFormHandle } from "@/types/contacts";
+import { CalendarClock, Clock, Globe } from "lucide-react";
+import CompactField from "../ui/compactField";
 
 type Props = {
   defaultValues?: Partial<ContactFormValues>;
@@ -93,11 +95,11 @@ const ContactForm = forwardRef<ContactFormHandle, Props>(
             name="last_contacted"
             render={({ field }) => (
               <div className="space-y-2">
-                <Label>Last Contacted</Label>
-
                 <DatePickerField
                   value={field.value}
                   onChange={field.onChange}
+                  label="Last Contacted"
+                  icon={Clock}
                 />
 
                 {formState.errors.last_contacted && (
@@ -114,11 +116,11 @@ const ContactForm = forwardRef<ContactFormHandle, Props>(
             name="next_followup"
             render={({ field }) => (
               <div className="space-y-2">
-                <Label>Next Follow-up</Label>
-
                 <DatePickerField
                   value={field.value}
                   onChange={field.onChange}
+                  label="Next Follow-up"
+                  icon={CalendarClock}
                 />
 
                 {formState.errors.next_followup && (
@@ -138,25 +140,27 @@ const ContactForm = forwardRef<ContactFormHandle, Props>(
             name="source"
             render={({ field }) => (
               <div className="space-y-2">
-                <Label>Source</Label>
+                <CompactField icon={Globe} label="Source">
+                  <Select value={field.value} onValueChange={field.onChange}>
+                    <SelectTrigger className="h-auto border-none bg-transparent p-0 text-sm font-medium shadow-none">
+                      <SelectValue placeholder="Choose source" />
+                    </SelectTrigger>
 
-                <Select value={field.value} onValueChange={field.onChange}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Choose source" />
-                  </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="LinkedIn">LinkedIn</SelectItem>
 
-                  <SelectContent>
-                    <SelectItem value="LinkedIn">LinkedIn</SelectItem>
+                      <SelectItem value="Referral">Referral</SelectItem>
 
-                    <SelectItem value="Referral">Referral</SelectItem>
+                      <SelectItem value="Website">Website</SelectItem>
 
-                    <SelectItem value="Website">Website</SelectItem>
+                      <SelectItem value="Conference">Conference</SelectItem>
 
-                    <SelectItem value="Conference">Conference</SelectItem>
-
-                    <SelectItem value="Cold Outreach">Cold Outreach</SelectItem>
-                  </SelectContent>
-                </Select>
+                      <SelectItem value="Cold Outreach">
+                        Cold Outreach
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                </CompactField>
 
                 {formState.errors.source && (
                   <p className="text-sm text-destructive">
@@ -172,27 +176,27 @@ const ContactForm = forwardRef<ContactFormHandle, Props>(
             name="status"
             render={({ field }) => (
               <div className="space-y-2">
-                <Label>Status</Label>
+                <CompactField icon={Globe} label="Source">
+                  <Select value={field.value} onValueChange={field.onChange}>
+                    <SelectTrigger className="h-auto border-none bg-transparent p-0 text-sm font-medium shadow-none">
+                      <SelectValue />
+                    </SelectTrigger>
 
-                <Select value={field.value} onValueChange={field.onChange}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Interested">Interested</SelectItem>
 
-                  <SelectContent>
-                    <SelectItem value="Interested">Interested</SelectItem>
+                      <SelectItem value="Qualified">Qualified</SelectItem>
 
-                    <SelectItem value="Qualified">Qualified</SelectItem>
+                      <SelectItem value="Meeting Scheduled">
+                        Meeting Scheduled
+                      </SelectItem>
 
-                    <SelectItem value="Meeting Scheduled">
-                      Meeting Scheduled
-                    </SelectItem>
+                      <SelectItem value="Won">Won</SelectItem>
 
-                    <SelectItem value="Won">Won</SelectItem>
-
-                    <SelectItem value="Lost">Lost</SelectItem>
-                  </SelectContent>
-                </Select>
+                      <SelectItem value="Lost">Lost</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </CompactField>
 
                 {formState.errors.status && (
                   <p className="text-sm text-destructive">

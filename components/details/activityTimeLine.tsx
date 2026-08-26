@@ -47,7 +47,7 @@ export default function ActivityTimeline({ contactId }: Props) {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 p-6">
       {groups.map(([title, items]) => (
         <ActivityGroup key={title} title={title} items={items} />
       ))}

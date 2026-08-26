@@ -41,9 +41,9 @@ export function DatePickerField({
         <button
           type="button"
           className={cn(
-            "flex w-full items-center gap-2.5 rounded-lg text-left transition-colors hover:bg-muted/50 ",
+            "flex w-full items-center gap-2.5 p-2 rounded-lg text-left transition-colors hover:bg-muted ",
             isWarning &&
-              "bg-amber-50 hover:bg-amber-100 p-2 dark:bg-amber-950/40 dark:hover:bg-amber-950/60",
+              "bg-amber-50 hover:bg-amber-100 dark:bg-amber-950/40 dark:hover:bg-amber-950/60",
             className,
           )}
         >
