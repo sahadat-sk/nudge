@@ -13,8 +13,13 @@ import {
 
 import { Button } from "@/components/ui/button";
 import ActivityIcon from "./activityIcon";
+import { ContactActivity } from "@/types/activity";
 
-export default function ActivityItem({ activity }: any) {
+interface Props {
+  activity: ContactActivity;
+}
+
+export default function ActivityItem({ activity }: Props) {
   return (
     <div className="group flex gap-4 rounded-lg border p-4 transition-colors hover:bg-muted/40">
       <div className="flex-1">
